@@ -68,26 +68,6 @@ button:focus-visible {
   }
 }
 
-:root,
-body{
-  width: 100% !important;
-}
-
-.contenedorPrincipal{
-
-  width: 100% !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  
-
-}
-
-:root{
-
-    height: 100% !important;
-
-}
 body{
   height: 100%;
   display: flex;
@@ -140,4 +120,10 @@ nav{
 
 nav .container{
   margin: 0px;
+}
+
+.greeting{
+
+  font-weight: 600;
+
 }
