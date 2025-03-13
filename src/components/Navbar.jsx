@@ -8,7 +8,7 @@ function NavBar() {
     return (
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand href="#home">Mi E-Commerce</Navbar.Brand>
+          <Navbar.Brand href="/">Amatista</Navbar.Brand>
           {/* <div id='barraDerecha'> */}
 
           <CartWidget />
@@ -16,18 +16,22 @@ function NavBar() {
           
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="#link">Sale</Nav.Link>
               <NavDropdown title="Tienda" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Categoría 1</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                Categoría 2
+                <NavDropdown.Item href="/category/aceites">Aceites</NavDropdown.Item>
+                <NavDropdown.Item href="/category/aromaterapia-para-gestantes">
+                Aromaterapia para gestantes
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Categoría 3</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Categoría 4
+                <NavDropdown.Item href="/category/cristales">
+                Cristales
                 </NavDropdown.Item>
+
+                {/* <NavDropdown.Item href="/category/cuidado-energetico">
+                Cuidado Energético
+                </NavDropdown.Item> */}
+
+                
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

@@ -1,6 +1,8 @@
 import Header from "./Header";
 import { Button } from "antd";
 import ItemListContainer from "./components/ItemListContainer"
+import ItemDetailContainer from "./components/ItemDetailContainer"
+import { Routes, Route } from "react-router-dom";
 
 
 function App() {
@@ -9,12 +11,26 @@ function App() {
       <Header />
 
       {/* Main */}
-      <main>
-        {/* <h2>Home1</h2> */}
+      {/* <main>
+        
         <ItemListContainer greeting={"Bienvenido a nuestra tienda"} />
         
-        {/* <Button type="primary">Button</Button> */}
-      </main>
+        
+      </main> */}
+
+
+      <Routes>
+        <Route path="/" element={<ItemListContainer />} />
+        <Route path="/category/:id" element={<ItemListContainer/>} />
+        <Route path="/item/:id" element={<ItemDetailContainer />} />
+        
+        {/* <Route path="/producto/:id" element={<ProductDetailContainer/>} /> */}
+      </Routes>
+
+
+
+
+
 
       {/* Footer */}
       <footer>

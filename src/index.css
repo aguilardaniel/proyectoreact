@@ -127,3 +127,53 @@ nav .container{
   font-weight: 600;
 
 }
+
+
+.fluid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 50px;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 5px;
+  padding: 1rem;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+}
+
+.product-card__image {
+  width: 100%;
+}
+
+.product-card__addtocart{
+
+  background-color: rgb(82, 145, 18);
+  color:rgba(255, 255, 255);
+  border-radius: 5px;
+}
+
+.product-card__details{
+
+  background-color: rgb(133, 66, 160);
+  color:rgba(255, 255, 255);
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+h3, p{
+  font-size: 20px !important;
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+  text-decoration-style: none !important;
+}
+
+.fluid-grid a{
+  
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+  text-decoration-style: none !important;
+}
+
