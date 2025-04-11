@@ -2,41 +2,43 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 
+import { addDoc, collection, getDocs, getFirestore, query, where, getDoc, doc } from "firebase/firestore"
+import { app } from "./firebaseConfig"
+
+
 
 const ItemDetailContainer = () => {
 
-  //Estados
+  
   const [resultado, setResultado] = useState([])
   const params = useParams() //{}
 
+  
+    
 
-  //Efectos
+
+  
   useEffect(() => {
-    /* fetch(params.id === undefined ? '/productos.json' : `/${params.id}.json`) */
-    fetch('/productos.json')
-        .then((res) => {
-            return res.json()
-        })
-        .then((res)=>{
+   
 
-         let productoParaBuscar = res.find((producto)=>producto.id===params.id)
-         
 
-        if(!productoParaBuscar){
+    
+    const db = getFirestore(app)
+    const productosCollection = collection(db, "productos")
+   
+    const miFiltro = doc(productosCollection, params.id)
+    const miConsulta = getDoc(miFiltro)
 
+    miConsulta
+        .then((respuesta) => {
             
-            return []
-
-        }else{
-            
-            return productoParaBuscar
-        }
-
+            setResultado(respuesta.data())
         })
-        .then((res) => {
-        
-            setResultado(res)
-        });
+        .catch(() => {
+            console.log("Salio todo mal")
+        })
+
+    
     }, [params.id]) 
 
 
@@ -46,9 +48,6 @@ const ItemDetailContainer = () => {
             <div className="">
                                
               
-                {/* {resultado.map((producto) => {
-                    return ( */} 
-
 
                         <ItemDetail
                             key={resultado.id}
@@ -56,8 +55,7 @@ const ItemDetailContainer = () => {
                         /> 
 
 
-                    {/* )
-                  })}  */} 
+                    
 
 
             </div>

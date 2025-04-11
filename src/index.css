@@ -137,11 +137,15 @@ nav .container{
 }
 
 .product-card {
+
+
+  
   background-color: white;
   border-radius: 5px;
   padding: 1rem;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   margin: 10px;
+  
 }
 
 .product-card__image {
@@ -177,3 +181,19 @@ h3, p{
   text-decoration-style: none !important;
 }
 
+.carritoli button{
+
+  background-color: rgb(142, 172, 236);
+  border:2px solid #ffffff;
+}
+
+button.comprar{
+
+  background-color: rgb(59, 176, 77);
+  border:2px solid #ffffff;
+}
+
+nav a{
+  color:#212121;
+  text-decoration: none;
+}

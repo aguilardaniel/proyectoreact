@@ -1,24 +1,64 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Item from "./Item";
+import { app } from "./firebaseConfig";
+import {} from "firebase/firestore";
+import { collection, getDocs, getFirestore, where, query } from "firebase/firestore";
 
+function capitalizarPrimeraLetra(str) {
+    if (!str) return '';
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
 const ItemListContainer = ({ greeting }) => {
 
-  //Estados
+  
   const [resultado, setResultado] = useState([])
-  const params = useParams() //{}
+  const params = useParams() 
 
 
-  //Efectos
   useEffect(() => {
-    fetch(params.id === undefined ? '/productos.json' : `/${params.id}.json`)
-        .then((res) => {
-            return res.json()
+
+    const db = getFirestore(app)
+    const productosCollection = collection(db, "productos")
+
+    let miConsulta;
+
+    if (params.id === undefined) {
+      
+        miConsulta = getDocs(productosCollection)
+    } else {
+       
+        const paramID = capitalizarPrimeraLetra(params.id).replace(/-/g, ' ')
+       
+        
+        const miFiltro = query(productosCollection, where("product_type", "==", paramID))
+        miConsulta = getDocs(miFiltro)
+    }
+
+    miConsulta
+        .then((respuesta) => {
+            
+            setResultado(respuesta.docs.map((doc) => {
+               
+                const productoData = doc.data()
+                productoData.id = doc.id
+                return productoData
+
+                
+            }))
         })
-        .then((res) => {
-            setResultado(res)
-        });
+        .catch(() => {
+            console.log("Salio todo mal")
+        })
+
+
+
+   
+
+
+
+
     }, [params.id])
 
 

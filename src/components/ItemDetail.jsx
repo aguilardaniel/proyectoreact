@@ -3,7 +3,76 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
+import { carritoContexto } from "./CarritoContext"
+
+import { useContext, useEffect, useState } from "react"
+import toast from "react-hot-toast"
+
 const ItemDetail = (props) => {
+  
+let productoParaAgregar=props.producto
+
+  
+
+  const elValorDelContexto = useContext(carritoContexto)
+  
+
+
+
+      const handleClick = () => {
+
+       
+        
+        if(elValorDelContexto.carrito.length>0){
+          
+         
+
+          const existeProducto= elValorDelContexto.carrito.find((elemento)=>elemento.id==props.producto.id)
+         
+
+         
+          if(!existeProducto){
+            
+            productoParaAgregar.cantidad=1
+            productoParaAgregar.price=Number(props.producto.price.slice(0,-4));
+            elValorDelContexto.handleAgregar(productoParaAgregar)
+          
+            toast.success("Producto agregado al carrito")
+          }
+          else{
+  
+            toast(
+                  'Desde el carrito podés modificar la cantidad', 
+                  
+                  {
+                    position: "bottom-center",
+                    icon: '🛒'
+                  }
+                  );
+  
+  
+          }
+
+
+
+        }else{
+
+          productoParaAgregar.cantidad=1
+          productoParaAgregar.price=Number(props.producto.price.slice(0,-4));
+            elValorDelContexto.handleAgregar(productoParaAgregar)
+            
+            toast.success("Producto agregado al carrito")
+            
+        }
+        
+      
+
+        
+       
+    }
+
+
     return (
         <Container>
       <Row>
@@ -21,7 +90,7 @@ const ItemDetail = (props) => {
                 
                  
 
-                <button type="button" className="product-card__addtocart">Agregar al Carrito!</button>
+                <button onClick={handleClick} type="button" className="product-card__addtocart">Agregar al Carrito!</button>
             </article>
         </Col>
       </Row>
